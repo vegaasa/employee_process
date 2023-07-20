@@ -15,21 +15,27 @@ This is Our Data Modelling:
 
 # First Create table in Our database
   Create table in our database:
+  
   a. temp_tbl_employee:
       contain: daily employee data
       from our ETL store our data to this temporary table then insert our data to main table since ETL will run daily and we must avoiding duplication of data
+  
   b.tbl_employee:
       contain: full employee data
       from table temp_tbl_employee insert our employee data to this final table
+  
   c. temp_tbl_timesheet:
       contain: daily timesheet data
       creating temp table to avoid duplicate data process
+  
   d. tbl_timesheet:
       contain: full timesheet data
       from table temp_tbl_timesheet insert our timesheet data to this final table
+  
   e. temp_tbl_ex_employee:
       contain: daily ex-employee data
       this table is full of employee that have been resigned. insert to this table to avoid duplicated data
+  
   f. tbl_ex_employee:
       contain: full ex-employee data
       thsi is main table for ex employee data.
@@ -75,4 +81,20 @@ we could store our .py file to windows scheduler.
 or i do recomend using orchestrator tools like Airflow.
 so it will run & executed by airflow shceduler and DAG Task.
 
+success rate:
+1. tbl_employee
+![image](https://github.com/vegaasa/employee_process/assets/45099588/dfe24c55-8489-4579-a251-06e439413bfd)
+
+2. tbl_timehseet:
+
+   ![image](https://github.com/vegaasa/employee_process/assets/45099588/952519cc-1c6e-40ed-8485-e67a258da9dc)
+
+3. tbl_branch_cost:
+   ![image](https://github.com/vegaasa/employee_process/assets/45099588/89f3a94f-84b9-4af5-a2ea-3a9efe369b08)
+
+
+adding date process as today(runnig process) in every table so it would be easy maintain if there is an issue.
+
+   
+   
 
