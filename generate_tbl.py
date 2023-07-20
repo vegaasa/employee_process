@@ -7,18 +7,7 @@ import argparse
 
 Base = declarative_base()
 
-"""class Connection(db_connection):
-    def __init__(self,db_connection):
-        engine = create_engine(db_connection)
-        self.engine = engine
-
-    def get_session(self):
-        Session = sessionmaker(bind=self.engine)
-        return Session()
-    
-    def get_engine(self):
-        return self.engine"""
-    
+#GENERATING TBL EMPLOYEE
 class tbl_employee(Base):
     __tablename__ = 'tbl_employee'
     employee_id = Column(String,primary_key=True)
@@ -36,6 +25,7 @@ class tbl_employee(Base):
         self.resign_date = resign_date
         self.date_process = date_process
 
+#GENERATING TEMP TBL EMPLOYEE
 class temp_tbl_employee(Base):
     __tablename__ = 'temp_tbl_employee'
     employee_id = Column(String,primary_key=True)
@@ -53,6 +43,7 @@ class temp_tbl_employee(Base):
         self.resign_date = resign_date
         self.date_process = date_process
 
+#GENERATING TBL TIMESHEET
 class tbl_timesheet(Base):
     __tablename__ = 'tbl_timesheet'
 
@@ -71,6 +62,7 @@ class tbl_timesheet(Base):
         self.checkout = checkout
         self.date_process = date_process
 
+##GENERATING TEMP TBL TIMESHEET
 class temp_tbl_timesheet(Base):
     __tablename__ = 'temp_tbl_timesheet'
 
@@ -89,6 +81,7 @@ class temp_tbl_timesheet(Base):
         self.checkout = checkout
         self.date_process = date_process
 
+#GENERATING TBL BRANCH COST
 class tbl_branch_cost(Base):
     __tablename__ = 'tbl_branch_cost'
 
@@ -113,6 +106,7 @@ class tbl_branch_cost(Base):
         self.salary_per_hour = salary_per_hour
         self.date_process = date_process
 
+#GENERATING TBL EX EMPLOYEE
 class tbl_ex_employee(Base):
     __tablename__ = 'tbl_ex_employee'
     employee_id = Column(String,primary_key=True)
@@ -130,6 +124,7 @@ class tbl_ex_employee(Base):
         self.resign_date = resign_date
         self.date_process = date_process
 
+#GENERATING TEMP TBL EX EMPLOYEE
 class temp_tbl_ex_employee(Base):
     __tablename__ = 'temp_tbl_ex_employee'
     employee_id = Column(String,primary_key=True)
@@ -163,10 +158,12 @@ def main(psql_password):
                                                          psql_host,
                                                          psql_port,
                                                          psql_db)
+    #generate engine to interact with database
     engine = create_engine(DB_URI)
     Base.metadata.create_all(engine)
 
 if __name__ == '__main__':
+    #using arg.parse to passing password database via cmd
     parser = argparse.ArgumentParser()
     parser.add_argument("--password", required=True, type=str)
     args = parser.parse_args()
